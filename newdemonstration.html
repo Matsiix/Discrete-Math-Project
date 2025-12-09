@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Algorithms: Proofs, Traces & Animations</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="container">
+    <header>
+      <h1>Algorithm Demonstration: Proofs, Traces & Animations</h1>
+      <p class="lead">
+        Enter an array (comma-separated) and a target value (optional for sorting). Run any algorithm to see:
+        <em>live visual array</em>, <em>collapsible proof</em>, and <em>color-coded traces</em>.
+      </p>
+    </header>
+
+    <section class="controls">
+      <label>Array: <input id="arrayInput" placeholder="e.g. 9,3,1,7,4" /></label>
+      <label>Target (for searches): <input id="targetInput" placeholder="e.g. 7" /></label>
+
+      <div class="buttons">
+        <button id="btnRender">Render Array</button>
+        <button id="btnLinear">Linear Search</button>
+        <button id="btnBinary">Binary Search</button>
+        <button id="btnBubble">Bubble Sort</button>
+        <button id="btnMerge">Merge Sort</button>
+        <label class="speed">
+          Speed:
+          <select id="speedSelect">
+            <option value="400">Slow</option>
+            <option value="200" selected>Normal</option>
+            <option value="50">Fast</option>
+          </select>
+        </label>
+      </div>
+    </section>
+
+    <section class="visuals">
+      <div class="left-column">
+        <div class="panel">
+          <h2>Array Visual</h2>
+          <div id="arrayVisual" class="array-visual"></div>
+        </div>
+
+        <div class="panel">
+          <h2>Operation Trace</h2>
+          <div id="trace" class="trace"></div>
+          <div class="stats" id="stats"></div>
+
+
+
+          <section id="legend" style="
+              border: 2px solid #ccc;
+              padding: 12px;
+              margin: 20px 0;
+              border-radius: 10px;
+              background: #f8f8f8;
+              max-width: 450px;
+              font-family: Arial, sans-serif;
+          ">
+            <h3 style="margin-top:0;">Algorithm Trace Legend</h3>
+
+            <p><span style="color:blue; font-weight:bold;">Blue</span> → Comparison between two elements</p>
+            <p><span style="color:red; font-weight:bold;">Red</span> → Swap operation (elements change positions)</p>
+            <p><span style="color:green; font-weight:bold;">Green</span> → Loop progress (outer or inner loop iteration)</p>
+            <p><span style="color:purple; font-weight:bold;">Purple</span> → Recursive call or recursive return</p>
+
+            <p style="font-size: 0.9em; margin-top: 10px;">
+              These colors appear inside the trace output panel and animations to show the algorithm's internal steps.
+            </p>
+          </section>
+        </div>
+      </div>
+
+
+
+
+      
+
+
+
+      
+      <div class="right-column">
+        <div class="panel">
+
+          <h2>Linear Search — Proof</h2>
+          <details>
+            <summary>Show / Hide</summary>
+            <div class="note">
+              <p><strong>Preserved predicate:</strong> At the beginning of iteration <em>i</em>, the target does not appear in indices 0…i−1.</p>
+              <p><strong>Initialization:</strong> before the loop i = 0 ⇒ predicate vacuously true.</p>
+              <p><strong>Maintenance:</strong> if arr[i] ≠ target and predicate true, incrementing i preserves it.</p>
+              <p><strong>Termination:</strong> loop ends when found or i = n ⇒ by predicate value not present.</p>
+              <p><strong>Worst-case complexity:</strong> O(n). Each iteration is O(1), max n iterations.</p>
+            </div>
+          </details>
+        </div>
+
+
+
+
+        
+        <div class="panel">
+          <h2>Binary Search — Proof</h2>
+          <details>
+            <summary>Show / Hide</summary>
+            <div class="note">
+              <p><strong>Preserved predicate:</strong> The target (if present) lies in [L,R].</p>
+              <p><strong>Inductive proof:</strong> for interval length k; splitting reduces k → induction applies.</p>
+              <p><strong>Recurrence:</strong> \( T(n) = 2T(n/2) + O(n) \rightarrow O(n \log n) \)
+                .</p>
+              <p><strong>Precondition:</strong> array must be sorted.</p>
+            </div>
+          </details>
+        </div>
+
+        <div class="panel">
+          <h2>Bubble Sort — Proof</h2>
+          <details>
+            <summary>Show / Hide</summary>
+            <div class="note">
+              <p><strong>Preserved predicate:</strong> after i passes, last i elements are in final position.</p>
+              <p><strong>Counting comparisons:</strong> \( \sum_{i=1}^{n-1} (n - i) = \frac{n(n-1)}{2} \)
+                .</p>
+              <p><strong>Correctness idea:</strong> each pass bubbles largest remaining element to end; repeat until sorted.</p>
+            </div>
+          </details>
+        </div>
+
+        <div class="panel">
+
+
+            
+          <h2>Merge Sort — Proof</h2>
+          <details>
+            <summary>Show / Hide</summary>
+            <div class="note">
+              <p><strong>Recursive invariant:</strong> mergeSort(A) returns a sorted version of A.</p>
+              <p><strong>Strong induction:</strong> base n≤1 trivial; combine two sorted halves via merge.</p>
+              <p><strong>Recurrence:</strong> \( T(n) = 2T(n/2) + O(n) \rightarrow O(n \log n) \)
+                .</p>
+            </div>
+          </details>
+        </div>
+      </div>
+    </section>
+    
+    <footer>
+      <p>Attempt to connect proofs & code.</p>
+    </footer>
+  </main>
+
+  <script src="newscript.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</body>
+</html>
